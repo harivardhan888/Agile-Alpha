@@ -1,0 +1,9 @@
+NVIDIA (NVDA) Financial Highlights Q3 FY2024:
+- Revenue: $18.12 billion, up 206% year-over-year.
+- Data Center Revenue: $14.51 billion.
+- GAAP gross margin: 74.0%.
+- Non-GAAP gross margin: 75.0%.
+- Net Income: $9.24 billion.
+- Outlook for Q4 FY2024: Revenue expected to be $20.00 billion, plus or minus 2%.
+- Main Risks: Geopolitical tensions, semiconductor supply chain constraints.
+- Future Guidance: Strong demand for AI infrastructure and GH200 Grace Hopper Superchip.
