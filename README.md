@@ -12,7 +12,7 @@ The system takes a company name and stock symbol, then orchestrates four special
 ## 🏗️ Architecture & Flow
 The project uses **LangGraph** to manage the state and **CrewAI** to execute agent tasks.
 
-```merkmaid
+```mermaid
 graph TD
     Start([User Input: Company/Symbol]) --> Init[Initialize State]
     Init --> Research[CrewAI: Research Phase]
@@ -29,9 +29,18 @@ graph TD
     Quality -- "Complete" --> Final([Final Report Generated])
 ```
 
+### 🏗️ Technical Architecture
+
+| Component | Responsibility | Technology Stack |
+| :--- | :--- | :--- |
+| **Orchestrator** | State Machine & Workflow Flow | LangGraph |
+| **Agent Core** | Autonomous Reasoning & Task Handling | CrewAI (Llama 3.1-8b via Groq) |
+| **Memory/RAG** | Local Document Retrieval & Embeddings | ChromaDB + LangChain + HF Inference |
+| **Tools** | Web Search, Financial Data, Quant Analysis | DuckDuckGo, yFinance |
+
 ### Key Components:
 -   **Knowledge Layer**: LangChain + ChromaDB (Vector Store) using HuggingFace Inference API.
--   **Execution Layer**: CrewAI Agents powered by Groq (Llama 3).
+-   **Execution Layer**: CrewAI Agents powered by Groq (Llama 3.1).
 -   **Control Layer**: LangGraph State Machine for workflow orchestration.
 
 ## 📂 Project Structure
