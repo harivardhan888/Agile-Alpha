@@ -1,0 +1,45 @@
+NVIDIA CORPORATION (NVDA)
+Q3 2026 EARNINGS CALL TRANSCRIPT
+October 15, 2026
+
+OPERATOR:
+Good afternoon. My name is Sarah, and I will be your conference operator today. At this time, I would like to welcome everyone to NVIDIA's third-quarter earnings call. All lines have been placed on mute to prevent any background noise. After the speakers' remarks, there will be a question-and-answer session. 
+
+I will now turn the call over to Simona Jankowski, Vice President of Investor Relations.
+
+SIMONA JANKOWSKI:
+Thank you. Good afternoon, everyone, and welcome to NVIDIA's third-quarter fiscal 2026 earnings call. Joining me today are Jensen Huang, President and Chief Executive Officer; and Colette Kress, Executive Vice President and Chief Financial Officer. 
+
+Before we begin, I'd like to remind you that our remarks today contain forward-looking statements that are subject to risks and uncertainties.
+
+COLETTE KRESS:
+Thank you, Simona. Q3 was an exceptional quarter. Total revenue was a record $30.0 billion, up 15% sequentially and up 85% year-over-year. This staggering growth was driven primarily by our Data Center platform, which generated $25.5 billion in revenue, up 110% from the same quarter last year. 
+
+Gross Margin for the quarter came in at 75.1%, expanding by 150 basis points from last quarter. This margin expansion is largely due to the favorable mix shift toward our high-end Blackwell architectures and robust software revenue from NVIDIA AI Enterprise. 
+
+Operating expenses were $3.8 billion, up 12% sequentially, reflecting aggressive investments in R&D for custom silicon and next-generation robotics platforms. Net income for the quarter was $16.9 billion, translating to earnings per share of $6.80.
+
+Looking at our balance sheet, we generated $12.5 billion in free cash flow this quarter. We ended the quarter with $45 billion in cash and marketable securities. Our debt-to-equity ratio remains incredibly healthy at 0.15x.
+
+JENSEN HUANG:
+Thank you, Colette. We are witnessing an industrial revolution. Every country, every major enterprise, and every startup is racing to build generative AI capabilities. 
+
+Our new Blackwell architecture is now in full production. The demand is completely off the charts. We have successfully deployed Blackwell clusters to AWS, Google Cloud, Microsoft Azure, and Oracle Cloud. The performance leap is massive—Blackwell is delivering 5x the inference performance of Hopper while consuming half the energy per token.
+
+We are also seeing incredible momentum in Edge AI. Demand for our Jetson platforms has increased by 40% year-over-year, as automotive and heavy manufacturing industries deploy autonomous robots.
+
+Looking to Q4, we expect total revenue to be $32.5 billion, plus or minus 2%. We anticipate our gross margins to remain stable at around 75%. We are fundamentally constrained by supply, not demand. We are working closely with TSMC and our supply chain partners to increase capacity through 2027.
+
+The future of computing is accelerated, and the future of software is AI. 
+
+OPERATOR:
+Thank you. We will now take questions from analysts. First question is from Stacy Rasgon at Bernstein.
+
+STACY RASGON:
+Hi guys, thanks for taking my question. Jensen, you mentioned being supply constrained. Can you give us some color on when you expect supply to catch up with demand for Blackwell?
+
+JENSEN HUANG:
+Stacy, great question. We expect to be supply constrained through at least the first half of next year. The complexity of these systems—the packaging, the HBM memory, the optics—requires unprecedented supply chain coordination. However, we are increasing output every single week.
+
+COLETTE KRESS:
+And to add to that, Stacy, our forward P/E ratio is currently sitting around 35x, which we believe is well-justified given the visibility we have into our backlog stretching all the way into late 2027.

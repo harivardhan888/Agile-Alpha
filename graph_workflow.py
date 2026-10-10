@@ -14,11 +14,14 @@ class AgentState(TypedDict):
     iterations: int
 
 class ResearchWorkflow:
-    def __init__(self, company, symbol):
+    def __init__(self, company, symbol, progress_callback=None):
         self.company = company
         self.symbol = symbol
+        self.progress_callback = progress_callback
         self.agents = MarketAgents()
         self.tasks = MarketTasks()
+        self.completed_tasks = 0
+        self.current_progress = 0
 
     def run_crew(self, state: AgentState):
         """Node to execute the CrewAI research."""
@@ -30,16 +33,42 @@ class ResearchWorkflow:
         advisor = self.agents.investment_advisor()
 
         task1 = self.tasks.news_analysis_task(analyst, state['company'])
-        task2 = self.tasks.financial_research_task(researcher, state['company'])
+        task2 = self.tasks.financial_research_task(researcher, state['symbol'])
         task3 = self.tasks.quantitative_analysis_task(strategist, state['symbol'])
         task4 = self.tasks.investment_strategy_task(advisor, state['company'])
+
+        if self.progress_callback: self.progress_callback(5, "Agents Initialized...")
+        self.current_progress = 5
+
+        def my_step_callback(step):
+            self.current_progress += 4
+            if self.current_progress > 95: self.current_progress = 95
+            if self.progress_callback: self.progress_callback(self.current_progress, "Agent reasoning and tool execution...")
+
+        def my_task_callback(task_output):
+            self.completed_tasks += 1
+            if self.completed_tasks == 1:
+                self.current_progress = max(self.current_progress, 25)
+                msg = "Fetching Financial Data..."
+            elif self.completed_tasks == 2:
+                self.current_progress = max(self.current_progress, 50)
+                msg = "Running Quantitative Models..."
+            elif self.completed_tasks == 3:
+                self.current_progress = max(self.current_progress, 75)
+                msg = "Drafting Investment Thesis..."
+            else:
+                self.current_progress = 100
+                msg = "Finalizing Report..."
+            if self.progress_callback: self.progress_callback(self.current_progress, msg)
 
         crew = Crew(
             agents=[analyst, researcher, strategist, advisor],
             tasks=[task1, task2, task3, task4],
             process=Process.sequential,
             verbose=True,
-            max_rpm=1 # Extreme caution for free tier
+            max_rpm=1,
+            task_callback=my_task_callback,
+            step_callback=my_step_callback
         )
 
         result = crew.kickoff()

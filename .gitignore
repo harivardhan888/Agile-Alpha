@@ -5,6 +5,12 @@ __pycache__/
 *.so
 .Python
 env/
+venv/
+ENV/
+myenv/
+myvenv/
+
+# Build & Dist
 build/
 develop-eggs/
 dist/
@@ -21,33 +27,39 @@ wheels/
 .installed.cfg
 *.egg
 
-# Virtual Environment
-venv/
-ENV/
-
 # Environment Variables (CRITICAL)
 .env
+.env.*
+!.env.example
 
-# Vector Database (ChromaDB)
+# Vector Database & App Data
 db/
-
-# Local Data and Reports
 data/*.pdf
 data/*.txt
 !data/nvda_highlights.txt
 final_report.txt
 error_log.txt
+*.sqlite3
+
+# Node & Frontend (React/Vite)
+node_modules/
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+.npm
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
 # Diagnostic/Test Scripts
 diagnose_*.py
 test_run.py
+test_groq.py
 
 # IDEs
 .vscode/
 .idea/
 *.swp
 *.swo
-
-# OS
 .DS_Store
 Thumbs.db
