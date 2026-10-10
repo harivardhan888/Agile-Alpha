@@ -6,6 +6,38 @@ Agile Alpha is a professional-grade, autonomous agentic workflow application des
 
 The application is built using a modern, decoupled architecture:
 
+```mermaid
+graph TD
+    User([User UI: React App]) -->|Upload Docs| FastAPI[FastAPI Backend]
+    User -->|Start Research| FastAPI
+    
+    subgraph "Backend Orchestration"
+    FastAPI -->|Start Background Task| LangGraph[LangGraph State Machine]
+    LangGraph --> CrewAI[CrewAI: Research Phase]
+    
+    subgraph "CrewAI Execution"
+    CrewAI --> Analyst[Market News Analyst]
+    Analyst --> Fundamentals[Financial Report Researcher]
+    Fundamentals --> Quant[Quant Strategist]
+    Quant --> Synthesis[Investment Advisor]
+    end
+    
+    Synthesis --> Output([Final Markdown Report])
+    end
+    Output -.->|Poll Status| User
+```
+
+### 🏗️ Technical Architecture Table
+
+| Component | Responsibility | Technology Stack |
+| :--- | :--- | :--- |
+| **Frontend UI** | User Interface & Real-time Progress | React + Vite + Vanilla CSS |
+| **Web Server** | API Endpoints & State Management | FastAPI + Uvicorn |
+| **Orchestrator** | State Machine & Workflow Flow | LangGraph |
+| **Agent Core** | Autonomous Reasoning & Task Handling | CrewAI (Qwen 3.8-27b via Groq) |
+| **Memory/RAG** | Local Document Retrieval & Embeddings | ChromaDB + LangChain |
+| **Tools** | Web Search, Financial Data, Quant Analysis | DuckDuckGo, yFinance |
+
 ### 1. Frontend (React + Vite)
 - **UI Framework:** React with Vite for lightning-fast HMR.
 - **Styling:** Custom CSS implementing a minimalistic, Wall Street / SaaS aesthetic (dark mode, crisp borders, `Inter` typography).
