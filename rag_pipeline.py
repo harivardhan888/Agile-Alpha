@@ -3,7 +3,7 @@ import requests
 from langchain_core.embeddings import Embeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import Chroma
-from langchain.tools import tool
+from crewai.tools import tool
 from dotenv import load_dotenv
 
 load_dotenv()
