@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Upload, CheckCircle2, TrendingUp, Activity, Newspaper, BarChart2, LineChart, Lightbulb, Check } from 'lucide-react';
+import { Upload, CheckCircle2, TrendingUp, Activity, Newspaper, BarChart2, LineChart, Lightbulb, Check, Clock } from 'lucide-react';
 import './index.css';
 
 function App() {
@@ -227,7 +227,23 @@ function App() {
             </button>
 
             {status === 'processing' && (
-              <div className="modern-timeline">
+              <>
+                <div className="loading-estimate-banner">
+                  <div className="loading-estimate-icon-wrap">
+                    <Clock size={20} />
+                  </div>
+                  <div className="loading-estimate-content">
+                    <div className="loading-estimate-header">
+                      <span className="loading-estimate-title">Deep Research In Progress</span>
+                      <span className="loading-estimate-pill">⏱ ~3–5 min</span>
+                    </div>
+                    <p className="loading-estimate-desc">
+                      Autonomous agents are querying market data, filings, and news in real time. Please <strong>check back in 3–5 minutes</strong> for your completed investment report.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="modern-timeline">
                 {[
                   {
                     title: 'News Analyst',
@@ -279,7 +295,8 @@ function App() {
                   </div>
                 ))}
               </div>
-            )}
+            </>
+          )}
 
             {status === 'error' && (
               <div style={{ marginTop: '2rem', padding: '1rem', border: '1px solid #ef4444', borderRadius: '8px', color: '#ef4444', fontSize: '0.9rem' }}>
