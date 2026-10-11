@@ -3,9 +3,8 @@ uvicorn==0.31.0
 python-multipart==0.0.12
 crewai==0.67.0
 langgraph>=0.2.0
-langchain==0.3.2
-langchain-community>=0.3.0
-langchain-chroma==0.1.4
+langchain-community>=0.2.0
+langchain-chroma>=0.1.0
 chromadb==0.5.11
 yfinance==0.2.43
 duckduckgo-search==6.3.0
