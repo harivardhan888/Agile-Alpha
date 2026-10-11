@@ -5,6 +5,18 @@ import yfinance as yf
 from crewai import Agent, LLM
 from crewai.tools import tool
 from rag_pipeline import rag_instance
+import litellm
+
+# Tell LiteLLM to automatically strip unsupported parameters (like cache_breakpoint) for Groq
+litellm.drop_params = True
+litellm.modify_params = True
+
+# Also patch mark_cache_breakpoint if present in crewai
+try:
+    import crewai.llms.cache as _crewai_cache
+    _crewai_cache.mark_cache_breakpoint = lambda msg: msg
+except Exception:
+    pass
 
 # Initialize LLMs with strict token budgets to avoid Groq's 1000 OTPM limit
 # We force the first 3 agents to use the short_llm, saving the budget for the final advisor.
