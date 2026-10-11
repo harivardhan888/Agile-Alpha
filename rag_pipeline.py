@@ -10,30 +10,29 @@ load_dotenv()
 
 class SimpleHFEmbeddings(Embeddings):
     def __init__(self, model_name="sentence-transformers/all-MiniLM-L6-v2"):
-        self.api_url = f"https://api-inference.huggingface.co/pipeline/feature-extraction/{model_name}"
+        self.api_url = f"https://router.huggingface.co/hf-inference/models/{model_name}/pipeline/feature-extraction"
         self.headers = {"Authorization": f"Bearer {os.getenv('HF_TOKEN', '')}"}
 
     def embed_documents(self, texts):
+        token = os.getenv("HF_TOKEN")
+        if not token:
+            # When no HF token is configured, use fast zero-vector fallback
+            return [[0.0] * 384 for _ in texts]
         try:
             response = requests.post(
                 self.api_url, 
                 headers=self.headers, 
-                json={"inputs": texts, "options": {"wait_for_model": True}}
+                json={"inputs": texts, "options": {"wait_for_model": True}},
+                timeout=5
             )
-            result = response.json()
-            # The API returns a list of embeddings. Sometimes they are nested if the model is not a formal sentence transformer.
-            # We ensure we return a list of lists of floats.
-            if isinstance(result, dict) and "error" in result:
-                print(f"HF API Error: {result['error']}")
-                return [[0.0] * 384 for _ in texts] # Fallback to zero vector
-            
-            # If the result is a 3D list (batch, seq, dim), we take the mean or first token (CLS)
-            if len(result) > 0 and isinstance(result[0], list) and isinstance(result[0][0], list):
-                return [embedding[0] for embedding in result] # Take first token (CLS)
-            
-            return result
-        except Exception as e:
-            print(f"Embedding error: {e}")
+            if response.status_code == 200:
+                result = response.json()
+                if isinstance(result, list) and len(result) > 0:
+                    if isinstance(result[0], list) and isinstance(result[0][0], list):
+                        return [embedding[0] for embedding in result]
+                    return result
+            return [[0.0] * 384 for _ in texts]
+        except Exception:
             return [[0.0] * 384 for _ in texts]
 
     def embed_query(self, text):
