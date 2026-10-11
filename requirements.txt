@@ -2,13 +2,12 @@ fastapi==0.115.0
 uvicorn==0.31.0
 python-multipart==0.0.12
 crewai==0.67.0
+langgraph>=0.2.0
 langchain==0.3.2
+langchain-community>=0.3.0
 langchain-chroma==0.1.4
 chromadb==0.5.11
 yfinance==0.2.43
 duckduckgo-search==6.3.0
 python-dotenv==1.0.1
-litellm==1.49.5
-apscheduler==3.10.4
-fastapi-sso==0.15.0
-email-validator==2.2.0
+requests>=2.31.0
