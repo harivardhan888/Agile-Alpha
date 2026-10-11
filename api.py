@@ -13,6 +13,8 @@ app = FastAPI(title="Agile Alpha API")
 
 # Ensure static dir exists
 os.makedirs("static", exist_ok=True)
+if os.path.exists("static/assets"):
+    app.mount("/assets", StaticFiles(directory="static/assets"), name="assets")
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 # In-memory job store (since we are stateless and have no DB!)
